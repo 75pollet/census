@@ -18,6 +18,13 @@ defmodule CensusWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :index
+    live "/citizens", CitizenLive.Index, :index
+    live "/citizens/new", CitizenLive.Index, :new
+    live "/citizens/:id/edit", CitizenLive.Index, :edit
+
+    live "/citizens/:id", CitizenLive.Show, :show
+    live "/citizens/:id/show/edit", CitizenLive.Show, :edit
+
   end
 
   # Other scopes may use custom stacks.

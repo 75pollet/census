@@ -1,0 +1,53 @@
+<h1>Listing Citizens</h1>
+
+<%= if @live_action in [:new, :edit] do %>
+  <.modal return_to={Routes.citizen_index_path(@socket, :index)}>
+    <.live_component
+      module={CensusWeb.CitizenLive.FormComponent}
+      id={@citizen.id || :new}
+      title={@page_title}
+      action={@live_action}
+      citizen={@citizen}
+      return_to={Routes.citizen_index_path(@socket, :index)}
+    />
+  </.modal>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>National</th>
+      <th>County</th>
+      <th>City</th>
+      <th>dob</th>
+      <th>Occupation</th>
+      <th>Email address</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody id="citizens">
+    <%= for citizen <- @citizens do %>
+      <tr id={"citizen-#{citizen.id}"}>
+        <td><%= citizen.first_name %></td>
+        <td><%= citizen.last_name %></td>
+        <td><%= citizen.national_id %></td>
+        <td><%= citizen.county %></td>
+        <td><%= citizen.city %></td>
+        <td><%= citizen.dob %></td>
+        <td><%= citizen.occupation %></td>
+        <td><%= citizen.email_address %></td>
+
+        <td>
+          <span><%= live_redirect "Show", to: Routes.citizen_show_path(@socket, :show, citizen) %></span>
+          <span><%= live_patch "Edit", to: Routes.citizen_index_path(@socket, :edit, citizen) %></span>
+          <span><%= link "Delete", to: "#", phx_click: "delete", phx_value_id: citizen.id, data: [confirm: "Are you sure?"] %></span>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<span><%= live_patch "New Citizen", to: Routes.citizen_index_path(@socket, :new) %></span>

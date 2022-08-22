@@ -1,0 +1,61 @@
+<h1>Show Citizen</h1>
+
+<%= if @live_action in [:edit] do %>
+  <.modal return_to={Routes.citizen_show_path(@socket, :show, @citizen)}>
+    <.live_component
+      module={CensusWeb.CitizenLive.FormComponent}
+      id={@citizen.id}
+      title={@page_title}
+      action={@live_action}
+      citizen={@citizen}
+      return_to={Routes.citizen_show_path(@socket, :show, @citizen)}
+    />
+  </.modal>
+<% end %>
+
+<ul>
+
+  <li>
+    <strong>First name:</strong>
+    <%= @citizen.first_name %>
+  </li>
+
+  <li>
+    <strong>Last name:</strong>
+    <%= @citizen.last_name %>
+  </li>
+
+  <li>
+    <strong>National:</strong>
+    <%= @citizen.national_id %>
+  </li>
+
+  <li>
+    <strong>County:</strong>
+    <%= @citizen.county %>
+  </li>
+
+  <li>
+    <strong>City:</strong>
+    <%= @citizen.city %>
+  </li>
+
+  <li>
+    <strong>dob:</strong>
+    <%= @citizen.dob %>
+  </li>
+
+  <li>
+    <strong>Occupation:</strong>
+    <%= @citizen.occupation %>
+  </li>
+
+  <li>
+    <strong>Email address:</strong>
+    <%= @citizen.email_address %>
+  </li>
+
+</ul>
+
+<span><%= live_patch "Edit", to: Routes.citizen_show_path(@socket, :edit, @citizen), class: "button" %></span> |
+<span><%= live_redirect "Back", to: Routes.citizen_index_path(@socket, :index) %></span>
