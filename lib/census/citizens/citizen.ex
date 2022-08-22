@@ -18,8 +18,26 @@ defmodule Census.Citizens.Citizen do
   @doc false
   def changeset(citizen, attrs) do
     citizen
-    |> cast(attrs, [:first_name, :last_name, :national_id, :county, :city, :dob, :occupation, :email_address])
-    |> validate_required([:first_name, :last_name, :national_id, :county, :city, :dob, :occupation, :email_address])
+    |> cast(attrs, [
+      :first_name,
+      :last_name,
+      :national_id,
+      :county,
+      :city,
+      :dob,
+      :occupation,
+      :email_address
+    ])
+    |> validate_required([
+      :first_name,
+      :last_name,
+      :national_id,
+      :county,
+      :city,
+      :dob,
+      :occupation,
+      :email_address
+    ])
     |> unique_constraint(:email_address)
     |> unique_constraint(:national_id)
   end

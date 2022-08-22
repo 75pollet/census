@@ -24,7 +24,6 @@ defmodule CensusWeb.Router do
 
     live "/citizens/:id", CitizenLive.Show, :show
     live "/citizens/:id/show/edit", CitizenLive.Show, :edit
-
   end
 
   # Other scopes may use custom stacks.

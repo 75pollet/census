@@ -8,7 +8,16 @@ defmodule Census.CitizensTest do
 
     import Census.CitizensFixtures
 
-    @invalid_attrs %{dob: nil, city: nil, county: nil, email_address: nil, first_name: nil, last_name: nil, national_id: nil, occupation: nil}
+    @invalid_attrs %{
+      dob: nil,
+      city: nil,
+      county: nil,
+      email_address: nil,
+      first_name: nil,
+      last_name: nil,
+      national_id: nil,
+      occupation: nil
+    }
 
     test "list_citizens/0 returns all citizens" do
       citizen = citizen_fixture()
@@ -21,7 +30,16 @@ defmodule Census.CitizensTest do
     end
 
     test "create_citizen/1 with valid data creates a citizen" do
-      valid_attrs = %{dob: ~U[2022-08-21 10:25:00Z], city: "some city", county: "some county", email_address: "some email_address", first_name: "some first_name", last_name: "some last_name", national_id: "some national_id", occupation: "some occupation"}
+      valid_attrs = %{
+        dob: ~U[2022-08-21 10:25:00Z],
+        city: "some city",
+        county: "some county",
+        email_address: "some email_address",
+        first_name: "some first_name",
+        last_name: "some last_name",
+        national_id: "some national_id",
+        occupation: "some occupation"
+      }
 
       assert {:ok, %Citizen{} = citizen} = Citizens.create_citizen(valid_attrs)
       assert citizen.dob == ~U[2022-08-21 10:25:00Z]
@@ -40,7 +58,17 @@ defmodule Census.CitizensTest do
 
     test "update_citizen/2 with valid data updates the citizen" do
       citizen = citizen_fixture()
-      update_attrs = %{dob: ~U[2022-08-22 10:25:00Z], city: "some updated city", county: "some updated county", email_address: "some updated email_address", first_name: "some updated first_name", last_name: "some updated last_name", national_id: "some updated national_id", occupation: "some updated occupation"}
+
+      update_attrs = %{
+        dob: ~U[2022-08-22 10:25:00Z],
+        city: "some updated city",
+        county: "some updated county",
+        email_address: "some updated email_address",
+        first_name: "some updated first_name",
+        last_name: "some updated last_name",
+        national_id: "some updated national_id",
+        occupation: "some updated occupation"
+      }
 
       assert {:ok, %Citizen{} = citizen} = Citizens.update_citizen(citizen, update_attrs)
       assert citizen.dob == ~U[2022-08-22 10:25:00Z]

@@ -17,6 +17,8 @@ config :census, CensusWeb.Endpoint,
   pubsub_server: Census.PubSub,
   live_view: [signing_salt: "C7bdTLlR"]
 
+config :census, event_stores: [Census.EventStore]
+
 # Configures the mailer
 #
 # By default it uses the "Local" adapter which stores the emails

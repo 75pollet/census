@@ -10,6 +10,9 @@ defmodule Census.Application do
     children = [
       # Start the Ecto repository
       Census.Repo,
+
+      # Start the EventStore
+      Census.EventStore,
       # Start the Telemetry supervisor
       CensusWeb.Telemetry,
       # Start the PubSub system
